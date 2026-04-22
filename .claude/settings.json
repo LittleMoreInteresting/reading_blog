@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsx *)",
+      "Bash(curl -s http://localhost:3000/api/tags)",
+      "Bash(curl -s http://localhost:3000/api/posts)",
+      "Bash(curl -s http://localhost:3000/api/posts/n1-1)",
+      "Bash(curl -s http://localhost:3000/api/books)",
+      "Bash(mv app/page.tsx app/\\\\\\(blog\\\\\\)/page.tsx)",
+      "Bash(mv app/book app/\\\\\\(blog\\\\\\)/book)",
+      "Bash(cp -r app/admin/posts/* app/admin/\\\\\\(dashboard\\\\\\)/posts/)",
+      "Bash(cp -r app/admin/books/* app/admin/\\\\\\(dashboard\\\\\\)/books/)"
+    ],
+    "additionalDirectories": [
+      "d:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\posts\\[id]",
+      "D:\\study_codes\\reading_blog\\my-app\\app\\admin\\(dashboard)\\posts\\[id]"
+    ]
+  }
+}
