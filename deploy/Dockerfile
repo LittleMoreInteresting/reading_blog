@@ -31,7 +31,10 @@ RUN npx prisma generate
 COPY . .
 
 # Build Next.js standalone output
+# Provide a temporary DATABASE_URL so SSG pages can prerender during build
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV DATABASE_URL="file:/tmp/build.db"
+RUN npx prisma db push --accept-data-loss
 RUN npm run build
 
 # Generate a seed database with schema (empty, no data)
@@ -52,6 +55,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
+# Install su-exec for dropping privileges in entrypoint
+RUN apk add --no-cache su-exec
+
 # Copy standalone output from builder
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
@@ -67,11 +73,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/seed.db ./seed.db
 # Create data directory for SQLite (will be mounted as volume)
 RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
 
-# Copy entrypoint script
-COPY --chown=nextjs:nodejs deploy/entrypoint.sh ./entrypoint.sh
+# Copy entrypoint script (run as root to fix bind-mount permissions)
+COPY deploy/entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
-
-USER nextjs
 
 EXPOSE 3000
 
