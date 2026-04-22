@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+
+# Next.js build output
+.next
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Database (will be mounted as volume)
+*.db
+*.db-journal
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+deploy/data

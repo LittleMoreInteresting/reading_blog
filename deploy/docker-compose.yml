@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: reading-blog
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Database (SQLite persisted in mounted volume)
+      DATABASE_URL: "file:/app/data/dev.db"
+
+      # NextAuth / Auth.js
+      AUTH_SECRET: ${AUTH_SECRET:-change-me-in-production}
+      AUTH_URL: ${AUTH_URL:-http://localhost:3000}
+
+      # Admin account
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@reading.blog}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123456}
+
+      # Blog info
+      BLOG_TITLE: ${BLOG_TITLE:-我的读书笔记}
+      BLOG_DESCRIPTION: ${BLOG_DESCRIPTION:-记录阅读中的思考与收获}
+      AUTHOR_NAME: ${AUTHOR_NAME:-书虫}
+
+      # Node
+      NODE_ENV: production
+    volumes:
+      # Persist SQLite database and uploaded files
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
