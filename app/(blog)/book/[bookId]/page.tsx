@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { BookDirectoryClient } from "@/components/blog/BookDirectoryClient";
 
+export const dynamic = "force-dynamic";
+
 interface BookPageProps {
   params: Promise<{ bookId: string }>;
 }

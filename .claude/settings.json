@@ -13,7 +13,9 @@
     ],
     "additionalDirectories": [
       "d:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\posts\\[id]",
-      "D:\\study_codes\\reading_blog\\my-app\\app\\admin\\(dashboard)\\posts\\[id]"
+      "D:\\study_codes\\reading_blog\\my-app\\app\\admin\\(dashboard)\\posts\\[id]",
+      "D:\\study_codes\\reading_blog\\app\\api\\books",
+      "D:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\books\\[id]"
     ]
   }
 }
