@@ -66,6 +66,21 @@ export const {
       if (token) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+
+        // Ensure the user still exists in DB (handles db resets)
+        const existingUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+        });
+        if (!existingUser && token.email) {
+          await prisma.user.create({
+            data: {
+              id: token.id as string,
+              email: token.email as string,
+              name: token.name as string,
+              role: (token.role as string) || "admin",
+            },
+          });
+        }
       }
       return session;
     },

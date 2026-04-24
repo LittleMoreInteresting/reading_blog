@@ -9,13 +9,18 @@
       "Bash(mv app/page.tsx app/\\\\\\(blog\\\\\\)/page.tsx)",
       "Bash(mv app/book app/\\\\\\(blog\\\\\\)/book)",
       "Bash(cp -r app/admin/posts/* app/admin/\\\\\\(dashboard\\\\\\)/posts/)",
-      "Bash(cp -r app/admin/books/* app/admin/\\\\\\(dashboard\\\\\\)/books/)"
+      "Bash(cp -r app/admin/books/* app/admin/\\\\\\(dashboard\\\\\\)/books/)",
+      "Bash(ls -la /d/study_codes/reading_blog/*.db)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(sqlite3 prisma/dev.db \"SELECT * FROM User;\")",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "d:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\posts\\[id]",
       "D:\\study_codes\\reading_blog\\my-app\\app\\admin\\(dashboard)\\posts\\[id]",
       "D:\\study_codes\\reading_blog\\app\\api\\books",
-      "D:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\books\\[id]"
+      "D:\\study_codes\\reading_blog\\app\\admin\\(dashboard)\\books\\[id]",
+      "D:\\study_codes\\reading_blog\\node_modules\\.prisma\\client"
     ]
   }
 }

@@ -66,9 +66,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
-
-# Copy seed database for first-time initialization
-COPY --from=builder --chown=nextjs:nodejs /app/seed.db ./seed.db
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
 
 # Create data directory for SQLite (will be mounted as volume)
 RUN mkdir -p /app/data && chown nextjs:nodejs /app/data

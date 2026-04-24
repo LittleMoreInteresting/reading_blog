@@ -57,6 +57,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(book, { status: 201 });
   } catch (error: any) {
+    console.error("[POST /api/books] error:", error);
     if (error.code === "P2002") {
       return NextResponse.json(
         { error: "Slug already exists" },
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
       );
     }
     return NextResponse.json(
-      { error: "Failed to create book" },
+      { error: error.message || "Failed to create book" },
       { status: 500 }
     );
   }
